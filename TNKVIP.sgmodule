@@ -13,7 +13,15 @@ ipv6 = false
 tun-excluded-routes = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 172.20.10.0/24
 
 [Rule]
-# 1. NHÓM ĐỊNH TUYẾN MẠNG NỘI BỘ VÀ HOTSPOT (Cần nằm trên cùng)
+
+DOMAIN,gdmf.apple.com,REJECT
+DOMAIN,crl.apple.com,REJECT
+DOMAIN,appledid.apple.com,REJECT
+DOMAIN,certs.apple.com,REJECT
+DOMAIN,valid.apple.com,REJECT
+DOMAIN,ppq.apple.com,REJECT
+DOMAIN,ocsp2.apple.com,REJECT
+DOMAIN,ocsp.apple.com,REJECT
 IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
 IP-CIDR,172.20.10.0/24,DIRECT,no-resolve
 IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
@@ -22,11 +30,7 @@ IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
 IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
 IP-CIDR,240.0.0.0/4,DIRECT,no-resolve
 IP-CIDR,255.255.255.255/32,REJECT,no-resolve
-
-# 2. ÉP GIAO THỨC ĐỂ TĂNG TỐC VÀ HẠ NHIỆT KHI PHÁT MẠNG
 AND,((PROTOCOL,UDP),(DEST-PORT,443)),REJECT
-
-# 3. NHÓM QUY TẮC BẢO VỆ MÁY KHI PHÁT HOTSPOT
 AND,((PROTOCOL,UDP),(DEST-PORT,123)),DIRECT
 DOMAIN-SUFFIX,pool.ntp.org,DIRECT
 DOMAIN-SUFFIX,time.apple.com,DIRECT
@@ -36,12 +40,6 @@ DOMAIN-SUFFIX,delivery.mp.microsoft.com,REJECT
 DOMAIN-SUFFIX,update.microsoft.com,REJECT
 DOMAIN-KEYWORD,torrent,REJECT
 DOMAIN-KEYWORD,tracker,REJECT
-
-# 4. CHO PHÉP LOCKET CHÍNH CHỦ HOẠT ĐỘNG MƯỢT MÀ
-DOMAIN-SUFFIX,revenuecat.com,DIRECT
-DOMAIN-SUFFIX,rc-backup.com,DIRECT
-
-# 5. CÁC QUY TẮC CƠ BẢN VÀ CHẶN QUẢNG CÁO
 DOMAIN,captive.apple.com,DIRECT
 DOMAIN,apple.dns.nextdns.io,DIRECT
 DOMAIN,linkip.nextdns.io,DIRECT
@@ -86,13 +84,6 @@ DOMAIN-SUFFIX,app-measurement.com,REJECT
 DOMAIN-SUFFIX,hotjar.com,REJECT
 DOMAIN-SUFFIX,mixpanel.com,REJECT
 DOMAIN-SUFFIX,rayjump.com,REJECT
-DOMAIN-SUFFIX,app.analytics-services.com,DIRECT
-DOMAIN-SUFFIX,firebasestorage.googleapis.com,DIRECT
-DOMAIN-SUFFIX,region1.app-analytics-services.com,DIRECT
-DOMAIN-SUFFIX,firebaseremoteconfig.googleapis.com,REJECT
-DOMAIN-SUFFIX,oy24bn.launches.appflyerssdk.com,REJECT
-DOMAIN-SUFFIX,app-measurement.com,REJECT
-DOMAIN-SUFFIX,firebaselogging.googleapis.com,REJECT
 
 [URL Rewrite]
 # Chặn quảng cáo Google Video
