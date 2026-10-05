@@ -1,0 +1,213 @@
+#!name= All In 1 With ĐHT
+#!desc= crack mọi app premium vip pro
+#!author=andanh447
+#!homepage=https://note3s.top/notes/WM6212
+#!moduleUrl=https://raw.githubusercontent.com/andanh447/Shadowrocketpremium.private-HT/refs/heads/main/ALL_IN_HTV4.sgmodule
+#!howtouse=shadowrocket ĐHT
+#Shadowrocket Configuration - ALL IN Đ.H.T (htienz07)
+
+[General]
+dns-server = https://dns.nextdns.io/797d97/tiendh
+update-url = https://raw.githubusercontent.com/andanh447/Shadowrocketpremium.private-HT/refs/heads/main/ALL_IN_HTV4.sgmodule
+ipv6 = false
+tun-excluded-routes = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 172.20.10.0/24
+
+[Rule]
+# 1. NHÓM ĐỊNH TUYẾN MẠNG NỘI BỘ VÀ HOTSPOT (Cần nằm trên cùng)
+IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+IP-CIDR,172.20.10.0/24,DIRECT,no-resolve
+IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
+IP-CIDR,240.0.0.0/4,DIRECT,no-resolve
+IP-CIDR,255.255.255.255/32,REJECT,no-resolve
+
+# 2. ÉP GIAO THỨC ĐỂ TĂNG TỐC VÀ HẠ NHIỆT KHI PHÁT MẠNG
+AND,((PROTOCOL,UDP),(DEST-PORT,443)),REJECT
+
+# 3. NHÓM QUY TẮC BẢO VỆ MÁY KHI PHÁT HOTSPOT
+AND,((PROTOCOL,UDP),(DEST-PORT,123)),DIRECT
+DOMAIN-SUFFIX,pool.ntp.org,DIRECT
+DOMAIN-SUFFIX,time.apple.com,DIRECT
+DOMAIN-SUFFIX,time.windows.com,DIRECT
+DOMAIN-SUFFIX,windowsupdate.com,REJECT
+DOMAIN-SUFFIX,delivery.mp.microsoft.com,REJECT
+DOMAIN-SUFFIX,update.microsoft.com,REJECT
+DOMAIN-KEYWORD,torrent,REJECT
+DOMAIN-KEYWORD,tracker,REJECT
+
+# 4. CHO PHÉP LOCKET CHÍNH CHỦ HOẠT ĐỘNG MƯỢT MÀ
+DOMAIN-SUFFIX,revenuecat.com,DIRECT
+DOMAIN-SUFFIX,rc-backup.com,DIRECT
+
+# 5. CÁC QUY TẮC CƠ BẢN VÀ CHẶN QUẢNG CÁO
+DOMAIN,captive.apple.com,DIRECT
+DOMAIN,apple.dns.nextdns.io,DIRECT
+DOMAIN,linkip.nextdns.io,DIRECT
+DOMAIN,dns.nextdns.io,DIRECT
+DOMAIN-SUFFIX,nextdns.io,DIRECT
+RULE-SET,https://raw.githubusercontent.com/badmojr/1Hosts/master/Lite/domains.wildcards,REJECT
+DOMAIN-SUFFIX,githubassets.com,DIRECT
+DOMAIN-SUFFIX,githubusercontent.com,DIRECT
+DOMAIN-SUFFIX,gov.vn,DIRECT
+DOMAIN-SUFFIX,branch.io,DIRECT
+DOMAIN-KEYWORD,facebook,DIRECT
+DOMAIN-KEYWORD,messenger,DIRECT
+DOMAIN-SUFFIX,facebook.com,DIRECT
+DOMAIN-SUFFIX,facebook.net,DIRECT
+DOMAIN-SUFFIX,fbcdn.net,DIRECT
+DOMAIN-SUFFIX,fbsbx.com,DIRECT
+DOMAIN-SUFFIX,fb.com,DIRECT
+DOMAIN-SUFFIX,fb.me,DIRECT
+DOMAIN-SUFFIX,messenger.com,DIRECT
+DOMAIN-SUFFIX,admob.com,REJECT
+DOMAIN-SUFFIX,googlesyndication.com,REJECT
+DOMAIN-SUFFIX,doubleclick.net,REJECT
+DOMAIN-SUFFIX,googleadservices.com,REJECT
+DOMAIN-SUFFIX,google-analytics.com,REJECT
+DOMAIN-SUFFIX,applovin.com,REJECT
+DOMAIN-SUFFIX,applvn.com,REJECT
+DOMAIN-SUFFIX,unityads.unity3d.com,REJECT
+DOMAIN-SUFFIX,vungle.com,REJECT
+DOMAIN-SUFFIX,ironsrc.com,REJECT
+DOMAIN-SUFFIX,supersonicads.com,REJECT
+DOMAIN-SUFFIX,chartboost.com,REJECT
+DOMAIN-SUFFIX,adcolony.com,REJECT
+DOMAIN-SUFFIX,inmobi.com,REJECT
+DOMAIN-SUFFIX,liftoff.io,REJECT
+DOMAIN-SUFFIX,tapjoy.com,REJECT
+DOMAIN-SUFFIX,appsflyer.com,REJECT
+DOMAIN-SUFFIX,adjust.com,REJECT
+DOMAIN-SUFFIX,kochava.com,REJECT
+DOMAIN-SUFFIX,umeng.com,REJECT
+DOMAIN-SUFFIX,crashlytics.com,REJECT
+DOMAIN-SUFFIX,app-measurement.com,REJECT
+DOMAIN-SUFFIX,hotjar.com,REJECT
+DOMAIN-SUFFIX,mixpanel.com,REJECT
+DOMAIN-SUFFIX,rayjump.com,REJECT
+DOMAIN-SUFFIX,app.analytics-services.com,DIRECT
+DOMAIN-SUFFIX,firebasestorage.googleapis.com,DIRECT
+DOMAIN-SUFFIX,region1.app-analytics-services.com,DIRECT
+DOMAIN-SUFFIX,firebaseremoteconfig.googleapis.com,REJECT
+DOMAIN-SUFFIX,oy24bn.launches.appflyerssdk.com,REJECT
+DOMAIN-SUFFIX,app-measurement.com,REJECT
+DOMAIN-SUFFIX,firebaselogging.googleapis.com,REJECT
+
+[URL Rewrite]
+# Chặn quảng cáo Google Video
+^https?:\/\/[\w-]+\.googlevideo\.com\/(?!(dclk_video_ads|videoplayback\?)).+&oad _ reject-200
+
+# YouTube Ads
+^https?:\/\/(www|s)\.youtube\.com\/api\/stats\/ads _ reject-200
+^https?:\/\/(www|s)\.youtube\.com\/(pagead|ptracking) _ reject-200
+^https?:\/\/s\.youtube\.com\/api\/stats\/qoe\?adcontext _ reject-200
+
+# General Video Ad request
+(^https?:\/\/[\w-]+\.googlevideo\.com\/(?!dclk_video_ads).+?)&ctier=L(&.+?),ctier,(.+) $1$2$3 302
+
+[Header Rewrite]
+# Đã xóa lệnh header của RevenueCat để Locket chính chủ nhận diện
+# Spotify VIP header
+http-request ^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/user-customization-service\/v1\/customize$ header-del if-none-match
+
+[Map Local]
+^https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&oad data-type=text data="" status-code=200
+
+[Script]
+# Sub-Store
+Sub-Store Core = type=http-request,pattern=^https?:\/\/sub\.store\/((download)|api\/(preview|sync|(utils\/node-info))),script-path=https://github.com/sub-store-org/Sub-Store/releases/latest/download/sub-store-1.min.js,requires-body=true,timeout=120
+Sub-Store Simple = type=http-request,pattern=^https?:\/\/sub\.store,script-path=https://github.com/sub-store-org/Sub-Store/releases/latest/download/sub-store-0.min.js,requires-body=true
+Sub-Store Sync = type=cron,cronexp=0 0 * * *,wake-system=1,timeout=120,script-path=https://github.com/sub-store-org/Sub-Store/releases/latest/download/cron-sync-artifacts.min.js
+
+# Youtube Premium
+youtube.request = type=http-request,pattern=^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next|player|reel\/reel_watch_sequence|get_watch),requires-body=1,max-size=-1,binary-body-mode=1,engine=jsc,script-path=https://raw.githubusercontent.com/duyvinh09/Module_IOS/refs/heads/main/js/youtube.response.js
+youtube.response = type=http-response,pattern=^https:\/\/youtubei\.googleapis\.com\/(youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch))(\?(.*))?$,requires-body=1,max-size=-1,binary-body-mode=1,engine={{{script}}},script-path=https://raw.githubusercontent.com/duyvinh09/Module_IOS/refs/heads/main/js/youtube.response.js,argument={"lyricLang":"vi","captionLang":"vi","blockUpload":true,"blockImmersive":true,"debug":false}
+
+# Spotify Premium
+spotify-json = type=http-request,pattern=^https:\/\/spclient\.wg\.spotify\.com\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/,requires-body=0,script-path=https://raw.githubusercontent.com/duyvinh09/Module_IOS/refs/heads/main/js/spotify-json.js
+spotify-proto = type=http-response,pattern=^https:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$,requires-body=1,binary-body-mode=1,max-size=0,script-path=https://raw.githubusercontent.com/duyvinh09/Module_IOS/refs/heads/main/js/spotify-proto.js,script-update-interval=0
+
+# SoundCloud Go+
+SoundCloudGo+ = type=http-response,pattern=https://api-mobile.soundcloud.com/configuration/ios,requires-body=1,script-path=https://raw.githubusercontent.com/Marol62926/MarScrpt/main/soundcloud.js
+
+# VSCO
+VSCO = type=http-request,pattern=^https://api.revenuecat.com/.+/(receipts$|subscribers/?(.*?)*$),script-path=https://raw.githubusercontent.com/duyvinh09/Module_IOS/refs/heads/main/js/VSCO.js,requires-body=true,timeout=60
+
+# Alight Motion
+AlightMotion = type=http-response,script-path=https://raw.githubusercontent.com/duyvinh09/Module_IOS/refs/heads/main/js/AlightMotion.js,pattern=^https:\/\/us-central1-alight-creative\.cloudfunctions\.net\/getAccountStatusAndLicenses,max-size=131072,requires-body=true,timeout=10,enable=true
+
+# PicsArt
+PicsArt = type=http-request,pattern=^https:\/\/api\.picsart\.com\/gw-v2\/shop\/subscription\/apple\/purchases,script-path=https://raw.githubusercontent.com/duyvinh09/Module_IOS/refs/heads/main/js/PicsArt.js,requires-body=true,timeout=60
+PicsArtStorages = type=http-request,pattern=^https:\/\/api\.picsart\.com\/gw-v2\/cloud-storage\/v1\/me\/storages,script-path=https://raw.githubusercontent.com/duyvinh09/Module_IOS/refs/heads/main/js/PicsArtStorages.js,requires-body=true,timeout=60
+
+# Wink
+Wink = type=http-response,pattern=^https:\/\/api-sub\.meitu\.com\/v2\/user\/vip_info_by_group\.json,requires-body=1,script-path=https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/WinkVipCrack.js
+
+# Truecaller
+Truecaller = type=http-response,pattern=^https:\/\/premium-[^.]+\.truecaller\.com\/v\d+\/(subscriptions\/status|products\/apple)(\?.*)?$,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/duyvinh09/Module_IOS/refs/heads/main/js/TrueCaller.js
+
+# Lightroom
+Lightroom = type=http-response,pattern=^https:\/\/photos\.adobe\.io\/v\d+\/accounts,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/duyvinh09/Module_IOS/refs/heads/main/js/lightroom.js,script-update-interval=-1
+
+# Kinemaster
+Kinemaster = type=http-response,pattern=^https:\/\/api-account\.kinemasters\.com\/v\d+\/user\/subscribe$,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/duyvinh09/Module_IOS/refs/heads/main/js/Kinemaster.js
+
+# CamScanner
+Camscanner = type=http-response,pattern=^https:\/\/(api|api-cs.*)\.intsig\.net\/purchase\/cs\/query_property\?,requires-body=1,script-path=https://raw.githubusercontent.com/duyvinh09/Module_IOS/refs/heads/main/js/camScanner.js
+
+# BeautyPlus
+BeautyPlus = type=http-response,pattern=https:\/\/(api\.mr\.pixocial\.com\/v1\/manual_unlock|newbeee-api\.beautyplus\.com\/api\/v1\/asset\/balance),script-path=https://raw.githubusercontent.com/duyvinh09/Module_IOS/refs/heads/main/js/BeautyPlus.js,requires-body=true,max-size=-1,timeout=60
+
+# Đã gỡ bỏ toàn bộ Script Locket / RevenueCat để dùng bản chính chủ
+
+# iTunes
+iTunes = type=http-response,pattern=^https?:\/\/buy\.itunes\.apple\.com\/verifyReceipt$,script-path=https://raw.githubusercontent.com/duyvinh09/Module_IOS/refs/heads/main/js/iTunes.js,requires-body=true,max-size=-1,timeout=60
+
+# Snow
+Snow = type=http-response,pattern=^https?:\/\/user-snow-api\.snow\.me\/v\d+\/purchase\/subscription\/subscriber\/status,script-path=https://raw.githubusercontent.com/duyvinh09/Module_IOS/refs/heads/main/js/Snow.js,requires-body=true,max-size=-1,timeout=60
+
+# Meitu
+Meitu = type=http-response,pattern=^https?:\/\/(h5|api)\.xiuxiu\.meitu\.com\/v\d+\/(h\d+\/vip|vip|user)\/,requires-body=1,script-path=https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/MeiTuXiuXiu.js
+
+# Chic
+Chic = type=http-response,pattern=^https:\/\/api-sub\.meitu\.com\/v2\/user\/vip_info\.json,requires-body=1,script-path=https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/Chic.js
+
+# Collart
+Collart = type=http-response,pattern=^https:\/\/iap\.etm\.tech\/receipts,requires-body=1,script-path=https://raw.githubusercontent.com/deezertidal/private/master/js-backup/Crack/mv.js
+
+# Flomo
+Flomo = type=http-response,pattern=^https:\/\/flomoapp\.com\/api\/v1\/user\/me,requires-body=1,script-path=https://raw.githubusercontent.com/Marol62926/MarScrpt/main/flomo.js
+
+# mix相机
+mix相机 = type=http-response,pattern=https?:\/\/cdn-bm\.camera360\.com\/api\/mix\/recovery,requires-body=1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/MIX.js
+
+# Molycam
+Molycam = type=http-response,pattern=https:\/\/pay\.wecut\.com\/apple\/(iosVerifyReceipt|iosAppVerifyReceipt)\.php,requires-body=1,script-path=https://raw.githubusercontent.com/deezertidal/private/master/js-backup/Crack/mv.js
+
+# Photoshop Express
+PhotoshopExpress = type=http-response,pattern=^https:\/\/lcs-mobile-cops\.adobe\.io\/mobile_profile,requires-body=1,script-path=https://raw.githubusercontent.com/litieyin/AD_VIP/main/Script/photoshop.js
+
+# Smallpdf
+Smallpdf解锁 = type=http-response,pattern=https://pro.smallpdf.com/pro/account,requires-body=1,script-path=https://raw.githubusercontent.com/Marol62926/MarScrpt/main/smallpdf.js
+
+# Photomath
+Photomath = type=http-response,pattern=https://lapi.photomath.net/v4/me,requires-body=1,script-path=https://raw.githubusercontent.com/Marol62926/MarScrpt/main/poh.js
+
+# ILovePDF
+ILovePDF = type=http-response,pattern=https://service.ilovepdf.com/v1/user,requires-body=1,script-path=https://raw.githubusercontent.com/Marol62926/MarScrpt/main/lovePdf.js
+
+# Pixelance
+Pixelance = type=http-response,pattern=^https:\/\/iap\.etm\.tech\/receipts,requires-body=1,script-path=https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/Pixelance.js
+
+# Piccollage
+Piccollage解锁 = type=http-response,pattern=https://piccollage.com/api/graphql,requires-body=1,script-path=https://raw.githubusercontent.com/Marol62926/MarScrpt/main/picCollage.js
+
+# SODA相机
+yueh = type=http-response,pattern=^http:\/\/yueh\.app168\.cc\/(first|panda|jiaopian|emoji|manghe)\/iap\/check\.php$,requires-body=1,script-path=https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/yueh.js
+
+[MITM]
+ca-passphrase = lf2QuJ5b
+enable = true
+ca-p12 = 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
+hostname = %APPEND%, *.googlevideo.com, youtubei.googleapis.com, www.youtube.com, s.youtube.com, -redirector*.googlevideo.com, premium*.truecaller.com, sub.store, buy.itunes.apple.com, spclient.wg.spotify.com, api-mobile.soundcloud.com, api.picsart.com, us-central1-alight-creative.cloudfunctions.net, api-sub.meitu.com, photos.adobe.io, ap*.intsig.net, api-account.kinemasters.com, api.mr.pixocial.com, newbeee-api.beautyplus.com, user-snow-api.snow.me, h5.xiuxiu.meitu.com, api.xiuxiu.meitu.com, gs-loc.apple.com, gs-loc-cn.apple.com, bluedot.is.autonavi.com, bluedot.is.autonavi.com.gds.alibabadns.com
