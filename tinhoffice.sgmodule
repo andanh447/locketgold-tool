@@ -5,7 +5,6 @@
 
 [Script]
 
-cục cức  = type=http-response,pattern=^https?:\/\/(api\.revenuecat\.com|api\.rc-backup\.com|youtubei\.googleapis\.com|api-mobile\.soundcloud\.com|buy\.itunes\.apple\.com|spclient\.wg\.spotify\.com|pro\.smallpdf\.com|lapi\.photomath\.net|piccollage\.com|iap\.etm\.tech|service\.ilovepdf\.com|api-sub\.meitu\.com|lcs-mobile-cops\.adobe\.io|yueh\.app168\.cc|premium-(.+)\.truecaller\.com|api-account\.kinemasters\.com|(api|api-cs.*)\.intsig\.net|us-central1-alight-creative\.cloudfunctions\.net|sub\.store),requires-body=1,max-size=3145728,timeout=60,script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/office%2Cjs
-
+cục cức  = type=http-response,pattern=^https?:\/\/(api\.revenuecat\.com|api\.rc-backup\.com|youtubei\.googleapis\.com|api-mobile\.soundcloud\.com|buy\.itunes\.apple\.com|spclient\.wg\.spotify\.com|pro\.smallpdf\.com|lapi\.photomath\.net|piccollage\.com|iap\.etm\.tech|service\.ilovepdf\.com|api-sub\.meitu\.com|lcs-mobile-cops\.adobe\.io|yueh\.app168\.cc|premium-(.+)\.truecaller\.com|api-account\.kinemasters\.com|(api|api-cs.*)\.intsig\.net|us-central1-alight-creative\.cloudfunctions\.net|sub\.store),requires-body=1,max-size=3145728,timeout=60,script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/OFFICETUN.js
 [MITM]
 hostname = %APPEND% *.wps.com, *.wps.cn, *.kingsoft.com, *.wpscdn.com, *.office.com, *.office.net, *.officeapps.live.com, nexus.officeapps.live.com
