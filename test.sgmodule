@@ -1,0 +1,30 @@
+#!name=Locket Gold Full Effects (Full Build)
+#!desc=Mở khóa Locket Gold + Photobooth + AI Stickers + Filter + Profile + Anti-Cache
+#!author=Kestrel-7 archive | Owner: ZiettKhueee
+#!version=2026.11.12
+
+[General]
+user-agent = Locket/1.0.0 (iPhone; iOS 18.0; Scale/3.00)
+
+[Script]
+# 1. Locket Gold & Anti-Cache 304
+deleteHeader_RC = type=http-request, pattern=^https?:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers), script-path=https://raw.githubusercontent.com/NightmarketServer/Module-Shadowrocket-NMS/refs/heads/main/Module-Shadowrocket-NMS/Locket%20Gold/header7.js, timeout=60
+
+deleteHeader_Firebase = type=http-request, pattern=^https?:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-4252a\/.+, script-path=https://raw.githubusercontent.com/NightmarketServer/Module-Shadowrocket-NMS/refs/heads/main/Module-Shadowrocket-NMS/Locket%20Gold/header7.js, timeout=60
+
+revenucat = type=http-response, pattern=^https?:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/[^/]+$), script-path=https://raw.githubusercontent.com/NightmarketServer/Module-Shadowrocket-NMS/refs/heads/main/Module-Shadowrocket-NMS/Locket%20Gold/locketfix8.js, requires-body=true, max-size=-1, timeout=60
+
+locket_rc = type=http-response, pattern=^https?:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-4252a\/.+, script-path=https://raw.githubusercontent.com/NightmarketServer/Module-Shadowrocket-NMS/refs/heads/main/Module-Shadowrocket-NMS/Locket%20Gold/forceGold4.3.js, requires-body=true, max-size=-1, timeout=60
+
+# 2. Locket Photobooth & AI Filters
+locket_pb_req = type=http-request, pattern=^https?:\/\/api\.locket\.com\/.+\/(photobooth|ai[_-]?sticker|effects|camera|filters), script-path=https://raw.githubusercontent.com/NightmarketServer/Module-Shadowrocket-NMS/refs/heads/main/Module-Shadowrocket-NMS/Locket%20Gold/photobooth.js, requires-body=true, max-size=-1, timeout=60
+
+locket_pb_resp = type=http-response, pattern=^https?:\/\/api\.locket\.com\/.+\/(photobooth|ai[_-]?sticker|effects|camera|filters), script-path=https://raw.githubusercontent.com/NightmarketServer/Module-Shadowrocket-NMS/refs/heads/main/Module-Shadowrocket-NMS/Locket%20Gold/photobooth_resp.js, requires-body=true, max-size=-1, timeout=60
+
+# 3. Locket Profile & Filter Unlock
+locket_change_profile = type=http-request, pattern=^https?:\/\/api\.locket\.com\/.+\/(user|profile|account)\/(update|change|edit), script-path=https://raw.githubusercontent.com/NightmarketServer/Module-Shadowrocket-NMS/refs/heads/main/Module-Shadowrocket-NMS/Locket%20Gold/profile_unlock.js, requires-body=true, max-size=-1, timeout=60
+
+locket_filter_resp = type=http-response, pattern=^https?:\/\/api\.locket\.com\/.+\/(filters|effects|stickers|camera[_-]?roll), script-path=https://raw.githubusercontent.com/NightmarketServer/Module-Shadowrocket-NMS/refs/heads/main/Module-Shadowrocket-NMS/Locket%20Gold/filter_unlock.js, requires-body=true, max-size=-1, timeout=60
+
+[MITM]
+hostname = %APPEND%, api.revenuecat.com, firebaseremoteconfig.googleapis.com, api.locket.com
