@@ -1,0 +1,93 @@
+#!url=https://locket-pro-backend.onrender.com/Locket.sgmodule?token=HOANGTIEN
+#!name=Locket Gold VIP [HOANGTIEN - HOÀNG TIẾN]
+#!desc=Cấu hình Locket VIP cấp riêng cho [HOÀNG TIẾN]. Token: HOANGTIEN. Hạn dùng: Vĩnh viễn. Khóa thiết bị 1-1.
+#!author=MinhHiep08 (@minhhiep07)
+#!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TestFlight.png
+#!system=ios
+#!arguments=屏蔽上传按钮:false,屏蔽选段按钮:true,屏蔽Shorts按钮:false,字幕翻译语言:off,启用调试模式:false
+#!arguments-desc=- Ẩn nút Upload (+): [true, false] (Mặc định: false để giữ nút Upload)\n- Ẩn nút chọn đoạn nhạc: [true, false]\n- Ẩn nút Shorts: [true, false]\n- Dịch phụ đề: [vi, en, off]\n- Bật Debug: [true, false]
+
+[Rule]
+AND,((PROTOCOL,UDP),(DEST-PORT,443)),REJECT-NO-DROP
+DOMAIN,firestore.googleapis.com,DIRECT
+DOMAIN-SUFFIX,firebaseio.com,DIRECT
+DOMAIN-SUFFIX,firebasedatabase.app,DIRECT
+DOMAIN,us-central1-locket-4252a.cloudfunctions.net,DIRECT
+DOMAIN,www.googleapis.com,DIRECT
+DOMAIN,oauth2.googleapis.com,DIRECT
+DOMAIN,people.googleapis.com,DIRECT
+DOMAIN,firebasestorage.googleapis.com,DIRECT
+DOMAIN-SUFFIX,firebasestorage.app,DIRECT
+DOMAIN,storage.googleapis.com,DIRECT
+DOMAIN-SUFFIX,appspot.com,DIRECT
+DOMAIN,firebaseinstallations.googleapis.com,DIRECT
+DOMAIN,identitytoolkit.googleapis.com,DIRECT
+DOMAIN,securetoken.googleapis.com,DIRECT
+DOMAIN,api.spotify.com,DIRECT
+DOMAIN,open.spotify.com,DIRECT
+DOMAIN,accounts.spotify.com,DIRECT
+DOMAIN-SUFFIX,scdn.co,DIRECT
+DOMAIN-SUFFIX,spotifycdn.com,DIRECT
+AND,((DOMAIN,firebaseremoteconfig.googleapis.com),(PROTOCOL,UDP)),REJECT
+AND,((DOMAIN,api.revenuecat.com),(PROTOCOL,UDP)),REJECT
+AND,((DOMAIN,api.locketcamera.com),(PROTOCOL,UDP)),REJECT
+AND,((DOMAIN-SUFFIX,locketcamera.com),(PROTOCOL,UDP)),REJECT
+AND,((DOMAIN,us-central1-locket-4252a.cloudfunctions.net),(PROTOCOL,UDP)),REJECT
+AND,((DOMAIN-SUFFIX,spotify.com),(PROTOCOL,UDP)),REJECT
+AND,((DOMAIN-SUFFIX,spclient.wg.spotify.com),(PROTOCOL,UDP)),REJECT
+DOMAIN,buy.itunes.apple.com,DIRECT
+DOMAIN,play.google.com,DIRECT
+DOMAIN,api.locketcamera.com,DIRECT
+DOMAIN,api.revenuecat.com,DIRECT
+DOMAIN,firebaseremoteconfig.googleapis.com,DIRECT
+DOMAIN-SUFFIX,sentry.io,REJECT
+DOMAIN-SUFFIX,ingest.sentry.io,REJECT
+
+
+[URL Rewrite]
+^https?:\/\/locket-pro-backend\.onrender\.com\/(?:assets\/widget_frames|assets\/frames|uploads\/frames)\/(.+?)(?:_system(?:Small|Medium|Large|ExtraLarge))?(?:@[0-9]x)?\.png(\?.*)?$ https://locket-pro-backend.onrender.com/assets/frames/$1.png$2 302
+^https?:\/\/i\.ibb\.co\/(.+?)(?:_system(?:Small|Medium|Large|ExtraLarge))?(?:@[0-9]x)?\.png(\?.*)?$ https://i.ibb.co/$1.png$2 302
+^https?:\/\/(us-central1-locket-4252a\.cloudfunctions\.net|api\.locketcamera\.com)\/generateFilteredImage https://locket-pro-backend.onrender.com/generateFilteredImage?token=HOANGTIEN 307
+
+[Header Rewrite]
+^https?:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers) header-del x-revenuecat-etag
+^https?:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers) header-del X-RevenueCat-ETag
+^https?:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers) header-del if-none-match
+^https?:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers) header-del If-None-Match
+^https?:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers) header-del if-modified-since
+^https?:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers) header-del If-Modified-Since
+
+^https?:\/\/firebaseremoteconfig\.googleapis\.com\/.+ header-del if-none-match
+^https?:\/\/firebaseremoteconfig\.googleapis\.com\/.+ header-del If-None-Match
+^https?:\/\/firebaseremoteconfig\.googleapis\.com\/.+ header-del if-modified-since
+^https?:\/\/firebaseremoteconfig\.googleapis\.com\/.+ header-del If-Modified-Since
+^https?:\/\/firebaseremoteconfig\.googleapis\.com\/.+ header-del x-goog-if-none-match
+
+^https?:\/\/api\.locketcamera\.com\/(getAccountInfo|getMomentViews|fetchMomentViews|getMomentViewers|getMomentActivity|getLatestMomentV2|getMoments|fetchMoments) header-del if-none-match
+^https?:\/\/api\.locketcamera\.com\/(getAccountInfo|getMomentViews|fetchMomentViews|getMomentViewers|getMomentActivity|getLatestMomentV2|getMoments|fetchMoments) header-del If-None-Match
+^https?:\/\/api\.locketcamera\.com\/(getAccountInfo|getMomentViews|fetchMomentViews|getMomentViewers|getMomentActivity|getLatestMomentV2|getMoments|fetchMoments) header-del if-modified-since
+^https?:\/\/api\.locketcamera\.com\/(getAccountInfo|getMomentViews|fetchMomentViews|getMomentViewers|getMomentActivity|getLatestMomentV2|getMoments|fetchMoments) header-del If-Modified-Since
+
+^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(?::443)?)\/(user-customization-service\/v1\/customize|bootstrap\/v1\/bootstrap) header-del if-none-match
+^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(?::443)?)\/(user-customization-service\/v1\/customize|bootstrap\/v1\/bootstrap) header-del If-None-Match
+^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(?::443)?)\/(user-customization-service\/v1\/customize|bootstrap\/v1\/bootstrap) header-del if-modified-since
+^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(?::443)?)\/(user-customization-service\/v1\/customize|bootstrap\/v1\/bootstrap) header-del If-Modified-Since
+
+[Script]
+
+deleteHeader_RC = type=http-request,pattern=^https?:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers),script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/deleteHeader.js?token=HOANGTIEN&v=1795082739000,timeout=60
+deleteHeader_Firebase = type=http-request,pattern=^https?:\/\/firebaseremoteconfig\.googleapis\.com\/.+,script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/deleteHeader.js?token=HOANGTIEN&v=1795082739000,timeout=60
+
+revenuecat = type=http-response,pattern=^https?:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers),script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/Locket_rcandanh447.js…EN&v=1795082739000,requires-body=true,max-size=-1,timeout=60
+locket_rc = type=http-response,pattern=^https?:\/\/firebaseremoteconfig\.googleapis\.com\/.+,script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/Locket_Unlocked_andanh447js…EN&v=1795082739000,requires-body=true,max-size=-1,timeout=60
+
+
+locket_change_profile = type=http-request,pattern=^https:\/\/api\.locketcamera\.com\/changeProfileInfo,script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/locket_filter_unlock.js?token=HOANGTIEN&v=1795082739000,timeout=60
+locket_filter_resp = type=http-response,pattern=^https?:\/\/api\.locketcamera\.com\/(getAccountInfo|checkAccess|getSubscription|checkSubscription|getFilters|fetchFilters|unlockFilter|verifyPurchase|getMomentViews|fetchMomentViews|getMomentViewers|getMomentActivity|getLatestMomentV2|getMoments|fetchMoments),requires-body=true,max-size=-1,script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/locket_filter_unlock.js?token=HOANGTIEN&v=1795082739000,timeout=60
+
+
+[Host]
+firebaseremoteconfigrealtime.googleapis.com = 0.0.0.0
+
+[MITM]
+hostname = %APPEND% -firebasestorage.googleapis.com, -*.firebasestorage.app, -storage.googleapis.com, -*.appspot.com, -firebaseinstallations.googleapis.com, -identitytoolkit.googleapis.com, -securetoken.googleapis.com, -firestore.googleapis.com, -*.firebaseio.com, -*.firebasedatabase.app, -www.googleapis.com, -oauth2.googleapis.com, -people.googleapis.com, api.revenuecat.com, firebaseremoteconfig.googleapis.com,  api.locketcamera.com, us-central1-locket-4252a.cloudfunctions.net, locket-pro-backend.onrender.com, i.ibb.co
