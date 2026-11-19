@@ -1,11 +1,9 @@
-#!url=https://locket-pro-backend.onrender.com/Locket.sgmodule?token=HOANGTIEN
-#!name=Locket Gold VIP [HOANGTIEN - HOÀNG TIẾN]
-#!desc=Cấu hình Locket VIP cấp riêng cho [HOÀNG TIẾN]. Token: HOANGTIEN. Hạn dùng: Vĩnh viễn. Khóa thiết bị 1-1.
-#!author=MinhHiep08 (@minhhiep07)
-#!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TestFlight.png
-#!system=ios
-#!arguments=屏蔽上传按钮:false,屏蔽选段按钮:true,屏蔽Shorts按钮:false,字幕翻译语言:off,启用调试模式:false
-#!arguments-desc=- Ẩn nút Upload (+): [true, false] (Mặc định: false để giữ nút Upload)\n- Ẩn nút chọn đoạn nhạc: [true, false]\n- Ẩn nút Shorts: [true, false]\n- Dịch phụ đề: [vi, en, off]\n- Bật Debug: [true, false]
+#!name=All In 1 With ĐHT
+#!desc=Crack mọi app premium vip pro bởi Đ_H_T (andanh447)
+#!desc= CON TUẤT NÀO MÀ VÀO XEM RỒI XÀI THÌ AN PHẬN XÀI BÁN MỘT CÁI CÁI LINK NÀY BAY VĨNH VIỄN MUỐN GÌ IB 0901894517 BỐ MÀY LÀM CHO CÁI NẾU MUỐN BÁN
+#!author=andanh447
+#!moduleUrl=
+#!howtouse=Shadowrocket ĐHT
 
 [Rule]
 AND,((PROTOCOL,UDP),(DEST-PORT,443)),REJECT-NO-DROP
@@ -74,16 +72,15 @@ DOMAIN-SUFFIX,ingest.sentry.io,REJECT
 ^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(?::443)?)\/(user-customization-service\/v1\/customize|bootstrap\/v1\/bootstrap) header-del If-Modified-Since
 
 [Script]
+deleteHeader_RC = type=http-request,pattern=^https?:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers),script-path=https://locket-pro-backend.onrender.com/js/deleteHeader.js?token=HOANGTIEN&v=1795082739000,timeout=60
+deleteHeader_Firebase = type=http-request,pattern=^https?:\/\/firebaseremoteconfig\.googleapis\.com\/.+,script-path=https://locket-pro-backend.onrender.com/js/deleteHeader.js?token=HOANGTIEN&v=1795082739000,timeout=60
 
-deleteHeader_RC = type=http-request,pattern=^https?:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers),script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/deleteHeader.js,timeout=60
-deleteHeader_Firebase = type=http-request,pattern=^https?:\/\/firebaseremoteconfig\.googleapis\.com\/.+,script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/deleteHeader.js,timeout=60
-
-revenuecat = type=http-response,pattern=^https?:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers),script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/Locket_rcandanh447.js,requires-body=true,max-size=-1,timeout=60
-locket_rc = type=http-response,pattern=^https?:\/\/firebaseremoteconfig\.googleapis\.com\/.+,script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/Locket_Unlocked_andanh447.js,requires-body=true,max-size=-1,timeout=60
+revenuecat = type=http-response,pattern=^https?:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers),script-path=https://locket-pro-backend.onrender.com/js/Locket_minhhiep08.js?token=HOANGTIEN&v=1795082739000,requires-body=true,max-size=-1,timeout=60
+locket_rc = type=http-response,pattern=^https?:\/\/firebaseremoteconfig\.googleapis\.com\/.+,script-path=https://locket-pro-backend.onrender.com/js/Locket_Unlocked.js?token=HOANGTIEN&v=1795082739000,requires-body=true,max-size=-1,timeout=60
 
 
-locket_change_profile = type=http-request,pattern=^https:\/\/api\.locketcamera\.com\/changeProfileInfo,script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/locket_filter_unlock.js,timeout=60
-locket_filter_resp = type=http-response,pattern=^https?:\/\/api\.locketcamera\.com\/(getAccountInfo|checkAccess|getSubscription|checkSubscription|getFilters|fetchFilters|unlockFilter|verifyPurchase|getMomentViews|fetchMomentViews|getMomentViewers|getMomentActivity|getLatestMomentV2|getMoments|fetchMoments),requires-body=true,max-size=-1,script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/locket_filter_unlock.js,timeout=60
+locket_change_profile = type=http-request,pattern=^https:\/\/api\.locketcamera\.com\/changeProfileInfo,script-path=https://locket-pro-backend.onrender.com/js/locket_filter_unlock.js?token=HOANGTIEN&v=1795082739000,timeout=60
+locket_filter_resp = type=http-response,pattern=^https?:\/\/api\.locketcamera\.com\/(getAccountInfo|checkAccess|getSubscription|checkSubscription|getFilters|fetchFilters|unlockFilter|verifyPurchase|getMomentViews|fetchMomentViews|getMomentViewers|getMomentActivity|getLatestMomentV2|getMoments|fetchMoments),requires-body=true,max-size=-1,script-path=https://locket-pro-backend.onrender.com/js/locket_filter_unlock.js?token=HOANGTIEN&v=1795082739000,timeout=60
 
 
 [Host]
