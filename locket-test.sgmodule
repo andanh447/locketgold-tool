@@ -75,15 +75,15 @@ DOMAIN-SUFFIX,ingest.sentry.io,REJECT
 
 [Script]
 
-deleteHeader_RC = type=http-request,pattern=^https?:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers),script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/deleteHeader.js?token=HOANGTIEN&v=1795082739000,timeout=60
-deleteHeader_Firebase = type=http-request,pattern=^https?:\/\/firebaseremoteconfig\.googleapis\.com\/.+,script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/deleteHeader.js?token=HOANGTIEN&v=1795082739000,timeout=60
+deleteHeader_RC = type=http-request,pattern=^https?:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers),script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/deleteHeader.js,timeout=60
+deleteHeader_Firebase = type=http-request,pattern=^https?:\/\/firebaseremoteconfig\.googleapis\.com\/.+,script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/deleteHeader.js,timeout=60
 
-revenuecat = type=http-response,pattern=^https?:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers),script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/Locket_rcandanh447.js…EN&v=1795082739000,requires-body=true,max-size=-1,timeout=60
-locket_rc = type=http-response,pattern=^https?:\/\/firebaseremoteconfig\.googleapis\.com\/.+,script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/Locket_Unlocked_andanh447js…EN&v=1795082739000,requires-body=true,max-size=-1,timeout=60
+revenuecat = type=http-response,pattern=^https?:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers),script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/Locket_rcandanh447.js,requires-body=true,max-size=-1,timeout=60
+locket_rc = type=http-response,pattern=^https?:\/\/firebaseremoteconfig\.googleapis\.com\/.+,script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/Locket_Unlocked_andanh447.js,requires-body=true,max-size=-1,timeout=60
 
 
-locket_change_profile = type=http-request,pattern=^https:\/\/api\.locketcamera\.com\/changeProfileInfo,script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/locket_filter_unlock.js?token=HOANGTIEN&v=1795082739000,timeout=60
-locket_filter_resp = type=http-response,pattern=^https?:\/\/api\.locketcamera\.com\/(getAccountInfo|checkAccess|getSubscription|checkSubscription|getFilters|fetchFilters|unlockFilter|verifyPurchase|getMomentViews|fetchMomentViews|getMomentViewers|getMomentActivity|getLatestMomentV2|getMoments|fetchMoments),requires-body=true,max-size=-1,script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/locket_filter_unlock.js?token=HOANGTIEN&v=1795082739000,timeout=60
+locket_change_profile = type=http-request,pattern=^https:\/\/api\.locketcamera\.com\/changeProfileInfo,script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/locket_filter_unlock.js,timeout=60
+locket_filter_resp = type=http-response,pattern=^https?:\/\/api\.locketcamera\.com\/(getAccountInfo|checkAccess|getSubscription|checkSubscription|getFilters|fetchFilters|unlockFilter|verifyPurchase|getMomentViews|fetchMomentViews|getMomentViewers|getMomentActivity|getLatestMomentV2|getMoments|fetchMoments),requires-body=true,max-size=-1,script-path=https://raw.githubusercontent.com/andanh447/locketgold-tool/refs/heads/main/locket_filter_unlock.js,timeout=60
 
 
 [Host]
