@@ -46,16 +46,16 @@ us-central1-locket-4252a.cloudfunctions.net = 163.223.9.98
 
 [Script]
 # 1. Chống cache 304 Not Modified trên RevenueCat & Firebase Remote Config (Request)
-locketmphong_strip_rc = type=http-request,pattern=^https?:\/\/(api|rc-backup)\.revenuecat\.com\/v1\/(subscribers|receipts).*,requires-body=0,max-size=1048576,script-path=https://raw.githubusercontent.com/andanh447/locketgold_tool/refs/heads/main/locket_PTB_andanh447.js
-locketmphong_strip_fb = type=http-request,pattern=^https?:\/\/.*firebaseremoteconfig.*\.googleapis\.com\/.*,requires-body=0,max-size=1048576,script-path=https://raw.githubusercontent.com/andanh447/locketgold_tool/refs/heads/main/locket_PTB_andanh447.js
+locketmphong_strip_rc = type=http-request,pattern=^https?:\/\/(api|rc-backup)\.revenuecat\.com\/v1\/(subscribers|receipts).*,requires-body=0,max-size=1048576,script-path=https://raw.githubusercontent.com/andanh447/locketgold_tool/refs/heads/main/locket_ptb_andanh447.js
+locketmphong_strip_fb = type=http-request,pattern=^https?:\/\/.*firebaseremoteconfig.*\.googleapis\.com\/.*,requires-body=0,max-size=1048576,script-path=https://raw.githubusercontent.com/andanh447/locketgold_tool/refs/heads/main/locket_ptb_andanh447.js
 
 # 2. Điều hướng toàn bộ Cloud Functions (postMomentV2, generateFilteredImage, ai-filters) về VPS
-locketmphong_cf = type=http-request,pattern=^https?:\/\/us-central1-locket-4252a\.cloudfunctions\.net\/.*,requires-body=0,max-size=1048576,script-path=https://raw.githubusercontent.com/andanh447/locketgold_tool/refs/heads/main/locket_PTB_andanh447.js
+locketmphong_cf = type=http-request,pattern=^https?:\/\/us-central1-locket-4252a\.cloudfunctions\.net\/.*,requires-body=0,max-size=1048576,script-path=https://raw.githubusercontent.com/andanh447/locketgold_tool/refs/heads/main/locket_ptb_andanh447.js
 # 3. Mở khóa RevenueCat Gold VIP (Response)
-locketmphong_RC = type=http-response,pattern=^https?:\/\/(api|rc-backup)\.revenuecat\.com\/v1\/(subscribers|receipts).*,requires-body=1,max-size=2097152,script-path=https://raw.githubusercontent.com/andanh447/locketgold_tool/refs/heads/main/locket_PTB_andanh447.js
+locketmphong_RC = type=http-response,pattern=^https?:\/\/(api|rc-backup)\.revenuecat\.com\/v1\/(subscribers|receipts).*,requires-body=1,max-size=2097152,script-path=https://raw.githubusercontent.com/andanh447/locketgold_tool/refs/heads/main/locket_ptb_andanh447.js
 
 # 4. Firebase Remote Config: 45s + Thư Viện + Moments Views + Khung Viền Widget Ngoài + 5 Bộ Caption + 42 Filter & AI Engine (Response)
-locketmphong_Firebase = type=http-response,pattern=^https?:\/\/.*firebaseremoteconfig.*\.googleapis\.com\/.*,requires-body=1,max-size=2097152,script-path=https://raw.githubusercontent.com/andanh447/locketgold_tool/refs/heads/main/locket_PTB_andanh447.js
+locketmphong_Firebase = type=http-response,pattern=^https?:\/\/.*firebaseremoteconfig.*\.googleapis\.com\/.*,requires-body=1,max-size=2097152,script-path=https://raw.githubusercontent.com/andanh447/locketgold_tool/refs/heads/main/locket_ptb_andanh447.js
 
 [MITM]
 enable = true
